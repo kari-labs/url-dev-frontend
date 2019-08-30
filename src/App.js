@@ -1,15 +1,15 @@
-import React, {Component, useState} from 'react';
-import { 
-  Grommet, 
-  Heading, 
-  Box, 
-  Paragraph, 
-  Accordion, 
-  AccordionPanel, 
-  Text, 
+import React, { Component, useState } from "react";
+import {
+  Grommet,
+  Heading,
+  Box,
+  Paragraph,
+  Anchor,
+  Text,
   Button as BasicButton,
-  TextInput,
-} from 'grommet';
+  DropButton,
+  TextInput
+} from "grommet";
 import * as Icons from "grommet-icons";
 import styled from "styled-components";
 
@@ -20,10 +20,10 @@ const Input = styled.input`
   border: none;
   border-bottom: none;
   border-radius: 2px;
-  box-shadow:none;
-  background:inherit;
-  width:100%;
-  white-space:pre-wrap; 
+  box-shadow: none;
+  background: inherit;
+  width: unset;
+  white-space: pre-wrap;
   font-family: inherit;
   transition: border-bottom 0.2s ease-in-out;
   &:focus {
@@ -37,76 +37,99 @@ const Input = styled.input`
   font-weight: inherit;
   color: ${props => props.color || "inherit"};
   line-height: min-content;
-  &::placeholder{
+  &::placeholder {
     transition: color 0.175s ease-in-out;
     color: ${props => props.placeholderColor || "#f8f8f8"};
   }
+`;
+
+const Grid = styled(Box)`
+  display: inline-grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: #7d4cdb;
+  color: white;
+  padding: 1vw 1vh;
+  width: 100%;
 `;
 
 function App() {
   const [value, setValue] = useState();
   return (
     <Grommet>
-      <Box background="light-2" pad="medium">
-        <Heading>
-          Welcome, to&nbsp; 
-          <Box 
-            background="brand" 
-            pad="small" 
-            flex="shrink" 
-            width="large" 
-            style={{display: 'inline-flex'}}
-          >
-            <Input
-              placeholder="URL.DEV"
-            />
-          </Box>
-        </Heading>
-        <Box pad="small" border={{color: "light-5", size: "large"}} width="large">
-          <Paragraph size="large">
-            With URL.DEV, you'll get the most bang-for-your-bargain with our intense link-management pattern. Enter a URL below to get started:
-          </Paragraph>
-          <Box 
-            margin={{
-              bottom: "small"
+      <Grid>
+        <Box>
+          <Heading margin="none">
+            <Input placeholder="URL.DEV" />
+          </Heading>
+        </Box>
+        <Box justify="end" alignContent="space-between" direction="row">
+          <Button
+            icon={<Icons.Help color="white" />}
+            label=""
+            href=""
+            plain
+            style={{
+              margin: "0 10px"
             }}
-            direction="row"
-          >
-            <TextInput 
-              placeholder="https://github.com/kari-labs"
-            />
-            <Button
-              icon={<Icons.Contract />}
-              label="Shorten"
-              onClick={() => {}}
-              width="max-content"
-              primary
-              color="accent-1"
-              reverse
-              margin={{
-                left: "small"
-              }}
-              style={{
-                borderRadius: "5px"
-              }}
-            />
-          </Box>
-        </Box>
-        <Box background="light-3" width="100%" margin={{vertical: "medium"}} border={{color: "light-5", size: "medium"}}>
-          <Accordion>
-            <AccordionPanel label="Panel 1">
-              <Box pad="medium" background="light-2">
-                <Text>One</Text>
+          />
+          <DropButton
+            icon={<Icons.User color="white" />}
+            label=""
+            onClick={() => {}}
+            plain
+            style={{
+              margin: "0 10px"
+            }}
+            dropAlign={{ top: "bottom", right: "right" }}
+            dropContent={
+              <Box pad="small" background="light-2" direction="column">
+                <Anchor>Sign In</Anchor>
+                <hr width="100%" color="#47525E" />
+                <Anchor>Sign Up</Anchor>
               </Box>
-            </AccordionPanel>
-            <AccordionPanel label="Panel 2">
-              <Box pad="medium" background="light-2">
-                <Text>Two</Text>
-              </Box>
-            </AccordionPanel>
-          </Accordion>
+            }
+          />
         </Box>
-        
+      </Grid>
+
+      <Box
+        pad="medium"
+        background="light-2"
+        width="unset"
+        margin={{
+          vertical: "large",
+          horizontal: "20%"
+        }}
+        justify="center"
+        alignSelf="center"
+      >
+        <Paragraph size="large">
+          With URL.DEV, you'll get the most bang-for-your-bargain with our
+          intense link-management pattern. Enter a URL below to get started:
+        </Paragraph>
+        <Box
+          margin={{
+            bottom: "small"
+          }}
+          direction="row"
+        >
+          <TextInput placeholder="https://github.com/kari-labs" />
+          <Button
+            icon={<Icons.Contract />}
+            label="Shorten"
+            onClick={() => {}}
+            width="max-content"
+            primary
+            color="accent-1"
+            reverse
+            margin={{
+              left: "small"
+            }}
+            style={{
+              borderRadius: "5px"
+            }}
+          />
+        </Box>
       </Box>
     </Grommet>
   );
