@@ -44,9 +44,9 @@ export default () => {
                   icon={
                     <Icons.Gremlin
                       size={
-                        size == "small"
+                        size === "small"
                           ? "medium"
-                          : size == "medium"
+                          : size === "medium"
                           ? "large"
                           : size
                       }
