@@ -7,7 +7,6 @@ import {
   DropButton,
   RoutedAnchor,
   ThemeContext,
-  Stack
 } from "grommet";
 import * as Icons from "grommet-icons";
 

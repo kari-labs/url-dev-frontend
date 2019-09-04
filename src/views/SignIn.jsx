@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Form, FormField, TextInput, Button, Heading } from "grommet";
+import { Box, Form, FormField, Button, Heading } from "grommet";
 import { Spacer } from "../components/UtilityComponents";
 
 export default props => {
