@@ -6,24 +6,23 @@ import {
   Heading,
   Button,
   DropButton,
-  RoutedAnchor,
+  Anchor,
   ThemeContext,
+  ResponsiveContext,
 } from "grommet";
 import * as Icons from "grommet-icons";
 
 const HeaderGrid = styled(Box)`
   display: inline-grid;
   grid-template-columns: 2fr 1fr;
-  background-color: #7d4cdb;
-  color: white;
   padding: 1vw 1vh;
   width: 100%;
-  position: sticky;
+  z-index: 9999;
 `;
 
 export default () => {
   return (
-    <HeaderGrid>
+    <HeaderGrid background="brand">
       <Box>
         <Heading margin="none">
           <ThemeContext.Extend
