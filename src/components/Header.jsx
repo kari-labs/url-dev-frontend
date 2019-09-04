@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import {
   Box,
   Heading,
@@ -29,29 +30,34 @@ export default () => {
             value={{
               anchor: {
                 hover: {
-                  textDecoration: "none"
-                }
-              }
+                  textDecoration: "none",
+                },
+              },
             }}
           >
-            <RoutedAnchor
-              path="/"
-              exact
-              color="white"
-              icon={
-                /* <Stack anchor="center">
-                  <Icons.Expand color="white" />
-                  <Icons.Link
-                    color="white"
-                    style={{
-                      transform: "rotate(-90deg)"
-                    }}
-                  />
-                </Stack> */
-                <Icons.Gremlin />
-              }
-              label="URL.DEV"
-            />
+            <ResponsiveContext.Consumer>
+              {size => (
+                <Anchor
+                  as={Link}
+                  to="/"
+                  exact
+                  color="white"
+                  icon={
+                    <Icons.Gremlin
+                      size={
+                        size == "small"
+                          ? "medium"
+                          : size == "medium"
+                          ? "large"
+                          : size
+                      }
+                      color="white"
+                    />
+                  }
+                  label="URL.DEV"
+                />
+              )}
+            </ResponsiveContext.Consumer>
           </ThemeContext.Extend>
         </Heading>
       </Box>
@@ -62,7 +68,7 @@ export default () => {
           href=""
           plain
           style={{
-            margin: "0 10px"
+            margin: "0 10px",
           }}
         />
         <DropButton
@@ -71,14 +77,18 @@ export default () => {
           onClick={() => {}}
           plain
           style={{
-            margin: "0 10px"
+            margin: "0 10px",
           }}
           dropAlign={{ top: "bottom", right: "right" }}
           dropContent={
             <Box pad="small" background="light-2" direction="column">
-              <RoutedAnchor path="/signin">Sign In</RoutedAnchor>
+              <Anchor as={Link} to="/signin">
+                Sign In
+              </Anchor>
               <hr width="100%" color="#47525E" />
-              <RoutedAnchor path="/signup">Sign Up</RoutedAnchor>
+              <Anchor as={Link} to="/signup">
+                Sign Up
+              </Anchor>
             </Box>
           }
         />
